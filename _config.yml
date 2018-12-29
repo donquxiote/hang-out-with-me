@@ -1,6 +1,6 @@
 # general configuration
 url:
-baseurl: ''
+baseurl: '/hang-out-with-me'
 
 # an avatar or logo (optional)
 logo: "/images/logo.png"
