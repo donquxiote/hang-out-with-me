@@ -29,12 +29,12 @@ If you've got a question, let me know! Signal (the secure messaging app) is best
 <div class="contact-methods-container">
   <p>Other contact methods:</p>
   <div class="sms-contact-container">
-    <a href="sms:5551234567"><img class="sms-logo" src="/images/sms-24.png">Text</a>
+    <a href="sms:5551234567"><img class="sms-logo" src="/hang-out-with-me/images/sms-24.png">Text</a>
   </div>
   <div class="phone-contact-container">
-    <a href="tel:5551234567"><img class="phone-logo" src="/images/phone-24.png">Call</a>
+    <a href="tel:5551234567"><img class="phone-logo" src="/hang-out-with-me/images/phone-24.png">Call</a>
   </div>
   <div class="email-contact-container">
-    <a href="mailto:email@fake_email.blargh?subject=Question About the Event"><img class="email-logo" src="/images/email-24.png">Email</a>
+    <a href="mailto:email@fake_email.blargh?subject=Question About the Event"><img class="email-logo" src="/hang-out-with-me/images/email-24.png">Email</a>
   </div>
 </div>
