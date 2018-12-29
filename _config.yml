@@ -1,0 +1,33 @@
+# general configuration
+url:
+baseurl: ''
+
+# an avatar or logo (optional)
+logo: "/images/logo.png"
+title: "Hang Out With Me"
+# tagline will appear under the title (optional)
+tagline: ""
+
+event:
+  host: "Eton Doolittle"
+
+encrypted_event: "4697140628ddf24e5bbad1b5d932a8c951d85f4f34c4c6484242ee3e47beb84fU2FsdGVkX1+XLKKvW8pzad1vsBG/OAIo13aKbvSlE4aLdGo5ui0NS/XpImkKqyz1QU4/XbBi6lhb/i0UoZHCdAMLrHhmFcj4UNQr9ZjpCshkyCv9UZ2HRfDUBGnhVNMxGhOgCMun7oKCZTHz9XDTKf2SCa58tRRI0HPaQGyAs6hvxgRPP4ScgwUx46pM+3+uQZcW43+PAnYOQZSEGqsK8mf+SigYEs/b2l0J0jdjySq/Ol0fJ7NfR5ToHkmYUn0BuCGdcnQMjEboHSjjyb5COqra0coUjazB6eKaPvcUOlxFw71z6oNqQydEycxePOZB6ado1V+ilYw33a62w+IWqYVjW/PkWFXjpYKYL4p15+u/PB/PiVKnqvRHZeOBNZzosZm6vvFewm1GFIClpvmohq2sNrg4YeCBKB+kN/UPiaVLScmebnNC0Rs6jlkzn1KjJPL4n0YpEhcWkW+dY7ZjTpCnSOqCLRlzgyz/rhpVxCoPRt24O4L7hzdZ/v8FtWoNu84gSxNMvwvVCUPz/OXio1bGZYXeY+FX5c/Mde9+azrOWP9Xv9HuxVWraxQkKxz44n9Nkds8UKyIjWzogA69OHUuvL7DgHvXtzWbrvPBIw9vm0qN1/DLGmT5KcBqi1mthlp34A9PU6fltfJK/7ktzVe47nPlVLx/M7qg/CR08wCBFe+hJ5gfnS4GhZ4NBz8rS/ncyGLMfn3z0sIjhy50fM0d4QHx8ZQcyW/FJzDmcuDWXygOm7XOEsxlycErevS1vj4jmHUuxjaEFcPUprsCSJhCpxPjh0Cdpc63ouCAZ9gkQjuguJ9OlmTrqMdw0gl/9ZKTwmKPdez3xrXtw6VSYM/j5/UNkZ1fSWD0xvSgLchE+H2ogKlVMsCOb7jnNMMeTtfFh7/jpgeXpkr5KAmE33qmony8zW/y8AO5BQxmuHmD3eiuMeJL9A4BXO03y/E70tOd/X2WOnzDbbpPHZlYHM3VHAqEZKUgqlgTeseN66sf7ZufW7DKIP3e3uEB912dkoF/pukadpV09ERUrwwtwyRJCb7FbRDrw/CD1HIbZqXGPOBEl/3uSMsgjfHyxb7izKBT3isSpx5NZ+HZzHuEyO+jxb1RyGYWQ5srYqC5RolbaAHTALSYytAsS3CKMoa3YRyo/bgmVB1Fb07et9tlcKHIoCFmT3eN1yRsOTPTP8GCZJUsbQ4g6ldu2QJoo+P+oDfBtZwRG6BZQnfFeoqj6cMXGfW8G1A2jdojNDEmUPP7MVKlW/l1epk/9AExoWXReCFqvnwR5EtNVQkwfWGWt9evExLnYZ/pdoakdsnkQo/IP0GrzsDoQLALMMNDXBj2q2ka0kIJ9PwdHTAeEg2qhQ6xOgvg+ZRaOQWT5iLBswfyzPqmPmfgN2qFCNeNx0qWSmOBkSdB3OrdZaqsDjhwn5nK2cl6H2UBOeFTnMWKU5TpI7EUngYDd6Aqt28eMfzC3OMhykIgn4noBEg4Z8EOyUe9wXOuVXKsbD7Uo5QBPCInncF4fZoGldM5ZA8ChoGabD7MGVLyD9ZEim8IvrqUUgGDoLfsfyzG9VQNCCfkhpvK955w1Gvf6gtd+pd69xhyW1a95+p6zoY58kApgiQ2GylzdP+wzXg9YRC6zsNyUIABpW+xM3AycKZUrMb4mpjOvUk8cukKDYgYCzmeVrjXqJlvOUmP99I+e+ElJTZPsba0lnqAGv6KDygpi8K538BN"
+
+# Dependencies
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink: pretty
+
+exclude:
+  - _events
+  - gulpfile.js
+  - README.md
+  - .gitignore
+  - .vscode
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - node_modules
