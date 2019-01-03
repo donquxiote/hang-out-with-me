@@ -83,11 +83,11 @@ Once you've committed your encrypted event and pushed it, you can publish the si
 
 ## TO DO
 
-This project is far from complete, here's the running list of what I want to work on:
+This project is far from complete, here are the current enhancement issues to be looked at:
 
-- [ ] make the css prettier
-- [ ] allow for liquid templates in encrypted page
-- [ ] build into a gem for better installation on jekyll sites
+- [CSS improvements](https://github.com/donquxiote/hang-out-with-me/issues/1)
+- [Liquid templating on encrypted page](https://github.com/donquxiote/hang-out-with-me/issues/2)
+- [Theme Gemmification](https://github.com/donquxiote/hang-out-with-me/issues/3)
 
 If you have a suggestion open an issue or a pull request.
 
