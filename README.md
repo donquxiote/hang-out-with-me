@@ -32,7 +32,7 @@ This is not foolproof information protection and should not be used for anything
     Then install bundler:
 
     ```bash
-    $ gem install bundler
+    gem install bundler
     ```
 
 2. Have NPM and Node Installed. Instructions can be found [here.](https://www.npmjs.com/get-npm)
@@ -50,13 +50,13 @@ If you are using a public repo, simply fork this repo to your account.
 Once you have the repo, run these commands:
 
 ```bash
-$ git pull https://github.com/YOUR-USERNAME/hang-out-with-me.git
+git pull https://github.com/YOUR-USERNAME/hang-out-with-me.git
 
-$ cd hang-out-with-me/
+cd hang-out-with-me/
 
-$ bundle install
+bundle install
 
-$ npm install
+npm install
 ```
 
 This will download your copy of the repo, then install the required gems, and then the required packages.
@@ -70,9 +70,9 @@ Edit the information which will be encrypted in `current.md`. Site configuration
 Edit the `encryptionPassword` variable in `gulpfle.js` to set the password your want your attendees to use. Then run these commands:
 
 ```bash
-$ cd hang-out-with-me/
+cd hang-out-with-me/
 
-$ gulp
+npx gulp
 ```
 
 Then commit your change and push.
