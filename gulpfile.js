@@ -1,14 +1,13 @@
 'use strict';
 
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var replace = require('gulp-replace');
 
 var cryptojs = require('crypto-js');
 var marked = require('marked');
 var FileSystem = require('fs');
 var through = require('through2');
-var PluginError = gutil.PluginError;
+var PluginError = require('plugin-error');
 
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
