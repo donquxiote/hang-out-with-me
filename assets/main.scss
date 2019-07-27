@@ -28,3 +28,21 @@ html {
   padding: 10px;
   text-align: left;
 }
+
+.body__contact {
+  display: inline-block;
+}
+
+.body__contact-icon {
+  vertical-align: middle;
+  max-width: 50%;
+  height: auto;
+  float: left;
+}
+
+.body__contact-text {
+  vertical-align: middle;
+  text-align: right;
+  // width: 10%;
+  float: right;
+}

@@ -27,17 +27,31 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
 
 ## Contact me
 
-If you've got a question, let me know! Signal (the secure messaging app) is best. If you're curious about it, [here's a good primer on it.](https://gizmodo.com/stop-sending-regular-text-messages-1831258324)
+If you've got a question, let me know!
 
 <div class="body__contact">
-  <p>Other contact methods:</p>
-  <div class="body__contact-sms">
-    <a href="sms:5551234567"><img class="sms-logo" src="/hang-out-with-me/images/sms-24.png">Text</a>
+  <div class="body__contact-sms body__contact-icon">
+    <a href="sms:5551234567">
+      <img
+        class="sms-logo body__contact-icon body__contact-logo"
+        src="/hang-out-with-me/images/sms-100.png"
+        alt="Text Me">
+      </a>
   </div>
-  <div class="body__contact-phone">
-    <a href="tel:5551234567"><img class="phone-logo" src="/hang-out-with-me/images/phone-24.png">Call</a>
+  <div class="body__contact-phone body__contact-icon">
+    <a href="tel:5551234567">
+      <img
+        class="phone-logo body__contact-icon body__contact-logo"
+        src="/hang-out-with-me/images/phone-100.png"
+        alt="Call Me">
+    </a>
   </div>
-  <div class="body__contact-email">
-    <a href="mailto:email@fake_email.blargh?subject=Question About the Event"><img class="email-logo" src="/hang-out-with-me/images/email-24.png">Email</a>
+  <div class="body__contact-email body__contact-icon">
+    <a href="mailto:email@fake_email.blargh?subject=Question About the Event">
+      <img
+        class="email-logo body__contact-icon body__contact-logo"
+        src="/hang-out-with-me/images/email-100.png"
+        alt="Email Me">
+    </a>
   </div>
 </div>
