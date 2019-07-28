@@ -7,11 +7,12 @@ var cryptojs = require('crypto-js');
 var marked = require('marked');
 var FileSystem = require('fs');
 var through = require('through2');
+var args = require('yargs').argv;
 var PluginError = require('plugin-error');
 
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
-var encryptionPassword = "password";
+var encryptionPassword = args["password"];
 
 var encryptedEventBody;
 
@@ -98,25 +99,33 @@ gulp.task('firewall:encrypt', () => {
 });
 
 gulp.task('replace-text', () => {
-  console.log(encryptedEventBody)
   return gulp.src('_config.yml')
     .pipe(replace(/(encrypted_event: .*)/g, "encrypted_event: " + '\"' + encryptedEventBody + '\"'))
     .pipe(gulp.dest('./'));
 });
 
-// gulp.task('firewall:watch', () => {
-//   gulp.watch(unencryptedSrc, ['encrypt']);
-// });
-
-// gulp.task('firewall', ['firewall:encrypt', 'replace-text', 'firewall:watch'], () => { });
-gulp.task('firewall', gulp.series('firewall:encrypt', 'replace-text'));
-
 /*
   END FIREWALL TASKS
 */
 
+gulp.task('generate-google-calendar-link', () => {
+  console.log("hi the google task was run");
+  return gulp.src('_events/current.md')
+    .pipe(replace(/(class=\"google-cal-link\" href=\".*\")/g, "class=\"google-cal-link\" href=\"test-test-test\""))
+    .pipe(gulp.dest('./'));
+  // return Promise.resolve('the value is ignored');
+});
+
+gulp.task('generate-apple-calendar-file', () => {
+  console.log("hi the apple task was run");
+  return Promise.resolve('the value is ignored');
+});
+
+gulp.task('firewall', gulp.series('generate-google-calendar-link', 'generate-apple-calendar-file', 'firewall:encrypt', 'replace-text'));
+
+
+
 gulp.task('default', gulp.series('firewall', (done) => {
   // your tasks here
-  console.log("Event has been encrypted and added to _config.yml")
   done();
 }));

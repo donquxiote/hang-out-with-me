@@ -1,12 +1,15 @@
 ---
 ---
 
-$text-color: #3A2449;
-$anchor-text-color: #94C595;
-$background-color: #747C92;
+$text-color: #cec5ff;
+$anchor-text-color: #FAD000;
+$anchor-text-visited-color: #6943FF;
+$background-color: #2D2B55;
+$button-text-color: #1E1E3F;
+// #2D2B55,#6943FF,#FAD000,#1E1E3F,#6943ff,#cec5ff,#3ad900,#6943ff
 
 html {
-  font-family: 'Vollkorn', serif;
+  font-family: 'Fira Sans', sans-serif;
 	color: $text-color;
 	background-color: $background-color;
 }
@@ -40,9 +43,40 @@ html {
   float: left;
 }
 
-.body__contact-text {
-  vertical-align: middle;
-  text-align: right;
-  // width: 10%;
-  float: right;
+a:link {
+  color: $anchor-text-color;
 }
+
+a:visited {
+  color: $anchor-text-visited-color;
+}
+
+input[type=password] {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid grey;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+}
+
+input:focus{
+  outline: none;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  background: $anchor-text-color;
+  color: $button-text-color;
+}
+
+
+
+// TODO:
+// better color scheme, specifically links and link hover colors, as well as background and regular text color
+// then publish
+// add google and ical calendar files, somehow., probably gulp task
