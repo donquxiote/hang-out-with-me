@@ -25,9 +25,11 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
   <p>Time, Day of the Week, Date, Year</p>
 </div>
 
-## Add to Calendar
-<div class="body__add-cal-event-google">
-  <a class="google-cal-link" href="">Google Calendar</a>
+<div class="body__add-cal-event">
+  <h2>Add to Calendar</h2>
+  <div class="body__add-cal-event-google">
+    <a undefined>Google Calendar</a>
+  </div>
 </div>
 
 ## Contact me

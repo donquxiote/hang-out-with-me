@@ -1,11 +1,10 @@
 'use strict';
 
 var gulp = require('gulp');
-var replace = require('gulp-replace');
-
+var gulpReplace = require('gulp-replace');
 var cryptojs = require('crypto-js');
 var marked = require('marked');
-var FileSystem = require('fs');
+var fs = require('fs');
 var through = require('through2');
 var args = require('yargs').argv;
 var PluginError = require('plugin-error');
@@ -13,6 +12,8 @@ var PluginError = require('plugin-error');
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
 var encryptionPassword = args["password"];
+var eventCreateBool = eventCreate(args["event-create"]);
+var eventDataJson = JSON.parse(fs.readFileSync("_events/eventData.json"));
 
 var encryptedEventBody;
 
@@ -39,14 +40,6 @@ function checkEncryptedLayout(frontMatter, filepath) {
   if (!hasEncryptedLayout) {
     console.log('[WARNING] ' + filepath + ': protected file not using encrypted layout.');
   }
-
-  // var linesWithLayout = linesWithoutLayout
-  //   .splice(0, 1)
-  //   .concat('layout: encrypted')
-  //   .concat(linesWithoutLayout);
-
-  // var frontMatterWithEncryptedLayout = linesWithLayout.join('\n');
-  // return frontMatterWithEncryptedLayout;
 }
 
 function encrypt(password) {
@@ -98,9 +91,9 @@ gulp.task('firewall:encrypt', () => {
     .pipe(gulp.dest('_posts'));
 });
 
-gulp.task('replace-text', () => {
+gulp.task('firewall:replace-text', () => {
   return gulp.src('_config.yml')
-    .pipe(replace(/(encrypted_event: .*)/g, "encrypted_event: " + '\"' + encryptedEventBody + '\"'))
+    .pipe(gulpReplace(/(encrypted_event: .*)/g, "encrypted_event: " + '\"' + encryptedEventBody + '\"'))
     .pipe(gulp.dest('./'));
 });
 
@@ -108,24 +101,103 @@ gulp.task('replace-text', () => {
   END FIREWALL TASKS
 */
 
-gulp.task('generate-google-calendar-link', () => {
+/*
+  START CALENDAR LINK TASKS
+*/
+
+function googleCalendarLink() {
+
+  base_url = "https://www.google.com/calendar/render?action=TEMPLATE";
+  title = "&text=" + encodeURI(eventDataJson["title"]);
+  description = "&details=" + encodeURI(eventDataJson["description"]);
+  location = "&location=" + encodeURI(eventDataJson["location"]);
+  fullDate;
+  if (eventDataJson["allDay"] == "true"){
+    // fullDate = all day function
+  } else {
+    // fullDate = start/end time function
+  }
+  startDate = gCalDateConcert(eventDataJson["startDate"]);
+  endDate = gCalDateConcert(eventDataJson["endDate"]);
+
+
+
+  // https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/master/services/google.md
+
+  // linkString
+  // return linkString
+};
+
+function appleCalendarLink() {
+  console.log("got into calendar function")
+  // eventTitle = gulp.src('_events/current.md').pipe()
+
+  // linkString
+  // return linkString
+};
+
+function eventCreate(input) {
+  switch (input) {
+    case "t":
+      return true
+    case "f":
+      return false
+    default:
+      console.log("Invalid input, use t or f, event section will be hidden by default")
+      return false
+  }
+
+};
+
+
+gulp.task('eventFileCreate:display', () => {
+  if (eventCreateBool){
+    return gulp.src('_events/current.md')
+      .pipe(gulpReplace(/(class=\"body__add-cal-event\".*\>)/g, "class=\"body__add-cal-event\">"));
+  } else {
+    return gulp.src('_events/current.md')
+      .pipe(gulpReplace(/(class=\"body__add-cal-event\".*\>)/g, "class=\"body__add-cal-event\" hidden>"));
+  };
+});
+
+gulp.task('eventFileCreate:google', () => {
   console.log("hi the google task was run");
-  return gulp.src('_events/current.md')
-    .pipe(replace(/(class=\"google-cal-link\" href=\".*\")/g, "class=\"google-cal-link\" href=\"test-test-test\""))
-    .pipe(gulp.dest('./'));
-  // return Promise.resolve('the value is ignored');
+  if (eventCreateBool) {
+    return gulp.src('_events/current.md')
+      .pipe(gulpReplace(/(class=\"google-cal-link\" href=\".*\")/g, googleCalendarLink()))
+      .pipe(gulp.dest('_events/'));
+  } else {
+    console.log("noting was done");
+    return Promise.resolve('the value is ignored');
+  };
 });
 
-gulp.task('generate-apple-calendar-file', () => {
+gulp.task('eventFileCreate:apple', () => {
   console.log("hi the apple task was run");
-  return Promise.resolve('the value is ignored');
+  if (eventCreateBool) {
+    return gulp.src('_events/current.md')
+      .pipe(gulpReplace(/(class=\"apple-cal-link\" href=\".*\")/g, appleCalendarLink()))
+      .pipe(gulp.dest('_events/'));
+  } else {
+    console.log("noting was done");
+    return Promise.resolve('the value is ignored');
+  };
 });
 
-gulp.task('firewall', gulp.series('generate-google-calendar-link', 'generate-apple-calendar-file', 'firewall:encrypt', 'replace-text'));
+/*
+  END CALENDAR LINK TASKS
+*/
 
+gulp.task('eventFileCreate', gulp.series('eventFileCreate:display', 'eventFileCreate:google', 'eventFileCreate:apple'));
 
+gulp.task('firewall', gulp.series('firewall:encrypt', 'firewall:replace-text'));
 
-gulp.task('default', gulp.series('firewall', (done) => {
-  // your tasks here
-  done();
-}));
+gulp.task('default',
+  gulp.series(
+    'eventFileCreate',
+    'firewall',
+    (done) => {
+      done();
+    }
+  )
+);
