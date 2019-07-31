@@ -1,13 +1,15 @@
 'use strict';
 
-var gulp = require('gulp');
-var gulpReplace = require('gulp-replace');
-var cryptojs = require('crypto-js');
-var marked = require('marked');
-var fs = require('fs');
-var through = require('through2');
-var args = require('yargs').argv;
-var PluginError = require('plugin-error');
+const gulp = require('gulp');
+const gulpReplace = require('gulp-replace');
+const cryptojs = require('crypto-js');
+const marked = require('marked');
+const fs = require('fs');
+const through = require('through2');
+const args = require('yargs').argv;
+const PluginError = require('plugin-error');
+const ics = require('ics')
+const cryptoRandomString = require('crypto-random-string');
 
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
@@ -137,11 +139,38 @@ function gCalTimedDate(startDate, endDate) {
 };
 
 function appleCalendarLink() {
-  // eventTitle = gulp.src('_events/current.md').pipe()
+  var eventIcsFilePath = eventFilePath();
+  ics.createEvent({
+    title: eventDataJson["title"],
+    description: eventDataJson["descriptions"],
+    start: appleEventDateStart(eventDataJson["startDate"]),
+    end: appleEventDateEnd(eventDataJson["endDate"])
+  }, (error, value) => {
+    if (error) {
+      console.log(error)
+    }
+    fs.writeFileSync(eventIcsFilePath, value)
+  })
 
-  // linkString
-  // return linkString
+  return "/hang-out-with-me/" + eventIcsFilePath;
 };
+
+function appleEventDateStart(startDate) {
+  if (eventDataJson["allDayBool"]) {
+    return [parseInt(startDate["year"]), parseInt(startDate["month"]), parseInt(startDate["day"])];
+  } else {
+    return [parseInt(startDate["year"]), parseInt(startDate["month"]), parseInt(startDate["day"]), parseInt(startDate["hour"]), parseInt(startDate["minute"])];
+  }
+};
+
+function appleEventDateEnd(endDate) {
+  if (eventDataJson["allDayBool"]) {
+    return [parseInt(endDate["year"]), parseInt(endDate["month"]), parseInt(endDate["day"])];
+  } else {
+    return [parseInt(endDate["year"]), parseInt(endDate["month"]), parseInt(endDate["day"]), parseInt(endDate["hour"]), parseInt(endDate["minute"])];
+  }
+};
+
 
 function eventCreate(input) {
   switch (input) {
@@ -154,6 +183,13 @@ function eventCreate(input) {
       return false
   }
 
+};
+
+function eventFilePath() {
+  var pathString = cryptoRandomString({ length: 28, type: 'url-safe' })
+  fs.mkdirSync("event_files/" + pathString);
+  fs.closeSync(fs.openSync("event_files/" + pathString + "/event.ics", 'w'));
+  return "event_files/" + pathString + "/event.ics"
 };
 
 
@@ -186,7 +222,12 @@ gulp.task('eventFileCreate:google', () => {
 gulp.task('eventFileCreate:apple', () => {
   if (eventCreateBool) {
     return gulp.src('_events/current.md')
-      .pipe(gulpReplace(/(class=\"apple-cal-link\" href=\".*\")/g, appleCalendarLink()))
+      .pipe(
+        gulpReplace(
+          /(class=\"apple-cal-link\" href=\".*\")/g,
+          "class=\"apple-cal-link\" href=\"" + appleCalendarLink() + "\""
+        )
+      )
       .pipe(gulp.dest('_events/'));
   } else {
     console.log("Add to Apple Calendar section will be hidden")

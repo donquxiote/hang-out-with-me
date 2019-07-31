@@ -4,8 +4,11 @@
     "fs": "0.0.1-security",
     "gulp": "^4.0.0",
     "gulp-replace": "^1.0.0",
+    "ics": "^2.15.1",
+    "crypto-random-string": "^3.0.1",
     "marked": "^0.7.0",
     "plugin-error": "^1.0.1",
+    "path": "^0.12.7",
     "through2": "^3.0.0",
     "yargs": "^13.3.0"
   }
