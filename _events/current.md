@@ -28,7 +28,7 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
 <div class="body__add-cal-event">
   <h2>Add to Calendar</h2>
   <div class="body__add-cal-event-google">
-    <a undefined>Google Calendar</a>
+    <a class="google-cal-link" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">Google Calendar</a>
   </div>
 </div>
 

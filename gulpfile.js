@@ -106,30 +106,37 @@ gulp.task('firewall:replace-text', () => {
 */
 
 function googleCalendarLink() {
-
-  base_url = "https://www.google.com/calendar/render?action=TEMPLATE";
-  title = "&text=" + encodeURI(eventDataJson["title"]);
-  description = "&details=" + encodeURI(eventDataJson["description"]);
-  location = "&location=" + encodeURI(eventDataJson["location"]);
-  fullDate;
-  if (eventDataJson["allDay"] == "true"){
-    // fullDate = all day function
+  var baseUrl = "https://www.google.com/calendar/render?action=TEMPLATE";
+  var title = "&text=" + encodeURI(eventDataJson["title"]);
+  var description = "&details=" + encodeURI(eventDataJson["description"]);
+  var location = "&location=" + encodeURI(eventDataJson["location"]);
+  var allDayBool = eventDataJson["allDayBool"];
+  var fullDate;
+  if (allDayBool == true){
+    fullDate = gCalDateAllDay(eventDataJson["startDate"], eventDataJson["endDate"]);
   } else {
-    // fullDate = start/end time function
+    fullDate = gCalTimedDate(eventDataJson["startDate"], eventDataJson["endDate"]);
   }
-  startDate = gCalDateConcert(eventDataJson["startDate"]);
-  endDate = gCalDateConcert(eventDataJson["endDate"]);
 
+  var linkString = baseUrl + title + description + location + fullDate
+  return linkString
+};
 
+function gCalDateAllDay(startDate, endDate) {
+  var startString = startDate["year"] + startDate["month"] + startDate["day"];
+  var endString = endDate["year"] + endDate["month"] + endDate["day"];
 
-  // https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/master/services/google.md
+  return "&dates=" + startString + "/" + endString
+};
 
-  // linkString
-  // return linkString
+function gCalTimedDate(startDate, endDate) {
+  var startString = startDate["year"] + startDate["month"] + startDate["day"] + "T" + startDate["hour"] + startDate["minute"] + "00";
+  var endString = endDate["year"] + endDate["month"] + endDate["day"] + "T" + endDate["hour"] + endDate["minute"] + "00";
+
+  return "&dates=" + startString + "/" + endString
 };
 
 function appleCalendarLink() {
-  console.log("got into calendar function")
   // eventTitle = gulp.src('_events/current.md').pipe()
 
   // linkString
@@ -161,25 +168,28 @@ gulp.task('eventFileCreate:display', () => {
 });
 
 gulp.task('eventFileCreate:google', () => {
-  console.log("hi the google task was run");
   if (eventCreateBool) {
     return gulp.src('_events/current.md')
-      .pipe(gulpReplace(/(class=\"google-cal-link\" href=\".*\")/g, googleCalendarLink()))
+      .pipe(
+        gulpReplace(
+          /(class=\"google-cal-link\" href=\".*\")/g,
+          "class=\"google-cal-link\" href=\"" + googleCalendarLink() + "\""
+        )
+      )
       .pipe(gulp.dest('_events/'));
   } else {
-    console.log("noting was done");
+    console.log("Add to Google Calendar section will be hidden")
     return Promise.resolve('the value is ignored');
   };
 });
 
 gulp.task('eventFileCreate:apple', () => {
-  console.log("hi the apple task was run");
   if (eventCreateBool) {
     return gulp.src('_events/current.md')
       .pipe(gulpReplace(/(class=\"apple-cal-link\" href=\".*\")/g, appleCalendarLink()))
       .pipe(gulp.dest('_events/'));
   } else {
-    console.log("noting was done");
+    console.log("Add to Apple Calendar section will be hidden")
     return Promise.resolve('the value is ignored');
   };
 });

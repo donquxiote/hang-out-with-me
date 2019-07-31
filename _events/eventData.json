@@ -1,3 +1,20 @@
 {
-  "title": "Event 1"
+  "title": "Event Title",
+  "location": "123 Street, City NY 91727",
+  "description": "A great description for a great event",
+  "startDate": {
+    "year": "2019",
+    "month": "09",
+    "day": "27",
+    "hour": "13",
+    "minute": "00"
+  },
+  "endDate": {
+    "year": "2019",
+    "month": "09",
+    "day": "28",
+    "hour": "13",
+    "minute": "00"
+  },
+  "allDayBool": false
 }
