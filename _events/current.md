@@ -2,9 +2,9 @@
 layout: encrypted
 ---
 
-# Title on Event Page
+# Let's go tilting at windmills!
 
-This is an event description that talks about how fun it will be to hang out and do awesome stuff with me.
+There are giants in the plains the to the east, we must defeat them to protect our village!
 
 ## Details
 
@@ -14,15 +14,15 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
 
 <div class="body__address">
   <a href="maps url">
-    <p>Address Line 1</p>
-    <p>Address Line 2</p>
+    <p>123 Windmills Street</p>
+    <p>AnyTown, TX 55512</p>
   </a>
 </div>
 
 ### Time
 
 <div class="body__time">
-  <p>Time, Day of the Week, Date, Year</p>
+  <p>9am until we're done! Tuesday, December 21st, 2023</p>
 </div>
 
 <h2>Add to Calendar</h2>
