@@ -25,14 +25,24 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
   <p>Time, Day of the Week, Date, Year</p>
 </div>
 
+<h2>Add to Calendar</h2>
 <div class="body__add-cal-event">
-  <h2>Add to Calendar</h2>
-  <div class="body__add-cal-event-google">
-    <a class="google-cal-link" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">Google Calendar</a>
+  <div class="body__add-cal-event google-calendar">
+    <a class="google-cal-link" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">
+      <img
+        class="google-icon body__calendar-icon"
+        src="/hang-out-with-me/images/sms-100.png"
+        alt="Add to Google Calendar">
+    </a>
   </div>
 
-  <div class="body__add-cal-event-google">
-    <a class="apple-cal-link" href="/hang-out-with-me/event_files/A6WWzT0p9WZl~TFV9t.pAdQY05vV/event.ics">Apple Calendar</a>
+  <div class="body__add-cal-event apple-calendar">
+    <a class="apple-cal-link" href="/hang-out-with-me/event_files/gGCYIKobwGIdLZ9qWfrzeudUVqxW/event.ics">
+      <img
+        class="apple-icon body__calendar-icon"
+        src="/hang-out-with-me/images/sms-100.png"
+        alt="Add to Apple Calendar">
+    </a>
   </div>
 </div>
 

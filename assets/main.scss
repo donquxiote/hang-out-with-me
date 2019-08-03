@@ -32,11 +32,11 @@ html {
   text-align: left;
 }
 
-.body__contact {
+.body__contact, .body__add-cal-event {
   display: inline-block;
 }
 
-.body__contact-icon {
+.body__contact-icon, .body__calendar-icon {
   vertical-align: middle;
   max-width: 50%;
   height: auto;
@@ -73,10 +73,3 @@ button {
   background: $anchor-text-color;
   color: $button-text-color;
 }
-
-
-
-// TODO:
-// better color scheme, specifically links and link hover colors, as well as background and regular text color
-// then publish
-// add google and ical calendar files, somehow., probably gulp task
