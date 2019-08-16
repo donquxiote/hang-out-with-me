@@ -8,13 +8,12 @@ const fs = require('fs');
 const through = require('through2');
 const args = require('yargs').argv;
 const PluginError = require('plugin-error');
-const ics = require('ics')
-const cryptoRandomString = require('crypto-random-string');
+const eventGen = require('./gulp_scripts/eventGenerator')
 
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
 var encryptionPassword = args["password"];
-var eventCreateBool = eventCreate(args["event-create"]);
+var eventCreateBool = eventGen.eventCreate(args["event-create"]);
 var eventDataJson = JSON.parse(fs.readFileSync("_events/eventData.json"));
 
 var encryptedEventBody;
@@ -107,92 +106,6 @@ gulp.task('firewall:replace-text', () => {
   START CALENDAR LINK TASKS
 */
 
-function googleCalendarLink() {
-  var baseUrl = "https://www.google.com/calendar/render?action=TEMPLATE";
-  var title = "&text=" + encodeURI(eventDataJson["title"]);
-  var description = "&details=" + encodeURI(eventDataJson["description"]);
-  var location = "&location=" + encodeURI(eventDataJson["location"]);
-  var allDayBool = eventDataJson["allDayBool"];
-  var fullDate;
-  if (allDayBool == true){
-    fullDate = gCalDateAllDay(eventDataJson["startDate"], eventDataJson["endDate"]);
-  } else {
-    fullDate = gCalTimedDate(eventDataJson["startDate"], eventDataJson["endDate"]);
-  }
-
-  var linkString = baseUrl + title + description + location + fullDate
-  return linkString
-};
-
-function gCalDateAllDay(startDate, endDate) {
-  var startString = startDate["year"] + startDate["month"] + startDate["day"];
-  var endString = endDate["year"] + endDate["month"] + endDate["day"];
-
-  return "&dates=" + startString + "/" + endString
-};
-
-function gCalTimedDate(startDate, endDate) {
-  var startString = startDate["year"] + startDate["month"] + startDate["day"] + "T" + startDate["hour"] + startDate["minute"] + "00";
-  var endString = endDate["year"] + endDate["month"] + endDate["day"] + "T" + endDate["hour"] + endDate["minute"] + "00";
-
-  return "&dates=" + startString + "/" + endString
-};
-
-function appleCalendarLink() {
-  var eventIcsFilePath = eventFilePath();
-  ics.createEvent({
-    title: eventDataJson["title"],
-    description: eventDataJson["descriptions"],
-    start: appleEventDateStart(eventDataJson["startDate"]),
-    end: appleEventDateEnd(eventDataJson["endDate"])
-  }, (error, value) => {
-    if (error) {
-      console.log(error)
-    }
-    fs.writeFileSync(eventIcsFilePath, value)
-  })
-
-  return "/hang-out-with-me/" + eventIcsFilePath;
-};
-
-function appleEventDateStart(startDate) {
-  if (eventDataJson["allDayBool"]) {
-    return [parseInt(startDate["year"]), parseInt(startDate["month"]), parseInt(startDate["day"])];
-  } else {
-    return [parseInt(startDate["year"]), parseInt(startDate["month"]), parseInt(startDate["day"]), parseInt(startDate["hour"]), parseInt(startDate["minute"])];
-  }
-};
-
-function appleEventDateEnd(endDate) {
-  if (eventDataJson["allDayBool"]) {
-    return [parseInt(endDate["year"]), parseInt(endDate["month"]), parseInt(endDate["day"])];
-  } else {
-    return [parseInt(endDate["year"]), parseInt(endDate["month"]), parseInt(endDate["day"]), parseInt(endDate["hour"]), parseInt(endDate["minute"])];
-  }
-};
-
-
-function eventCreate(input) {
-  switch (input) {
-    case "t":
-      return true
-    case "f":
-      return false
-    default:
-      console.log("Invalid input, use t or f, event section will be hidden by default")
-      return false
-  }
-
-};
-
-function eventFilePath() {
-  var pathString = cryptoRandomString({ length: 28, type: 'url-safe' })
-  fs.mkdirSync("event_files/" + pathString);
-  fs.closeSync(fs.openSync("event_files/" + pathString + "/event.ics", 'w'));
-  return "event_files/" + pathString + "/event.ics"
-};
-
-
 gulp.task('eventFileCreate:display', () => {
   if (eventCreateBool){
     return gulp.src('_events/current.md')
@@ -209,7 +122,7 @@ gulp.task('eventFileCreate:google', () => {
       .pipe(
         gulpReplace(
           /(class=\"google-cal-link\" href=\".*\")/g,
-          "class=\"google-cal-link\" href=\"" + googleCalendarLink() + "\""
+          "class=\"google-cal-link\" href=\"" + eventGen.googleCalendarLink(eventDataJson) + "\""
         )
       )
       .pipe(gulp.dest('_events/'));
@@ -225,7 +138,7 @@ gulp.task('eventFileCreate:apple', () => {
       .pipe(
         gulpReplace(
           /(class=\"apple-cal-link\" href=\".*\")/g,
-          "class=\"apple-cal-link\" href=\"" + appleCalendarLink() + "\""
+          "class=\"apple-cal-link\" href=\"" + eventGen.appleCalendarLink(eventDataJson) + "\""
         )
       )
       .pipe(gulp.dest('_events/'));
