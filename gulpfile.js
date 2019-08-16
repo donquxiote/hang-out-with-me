@@ -12,7 +12,6 @@ var unencryptedSrc = "_events/current.md";
 var encryptionPassword = args["password"];
 var eventCreateBool = eventGen.eventCreate(args["event-create"]);
 var eventDataJson = JSON.parse(fs.readFileSync("_events/eventData.json"));
-var encryptedEventBody = e8n.exportedBody.body;
 
 /*
   START FIREWALL TASKS
@@ -27,7 +26,7 @@ gulp.task('firewall:encrypt', () => {
 
 gulp.task('firewall:replace-text', () => {
   return gulp.src('_config.yml')
-    .pipe(gulpReplace(/(encrypted_event: .*)/g, "encrypted_event: " + '\"' + encryptedEventBody + '\"'))
+    .pipe(gulpReplace(/(encrypted_event: .*)/g, "encrypted_event: " + '\"' + e8n.exportedBody.body + '\"'))
     .pipe(gulp.dest('./'));
 });
 
