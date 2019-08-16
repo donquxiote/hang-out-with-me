@@ -12,8 +12,7 @@ var unencryptedSrc = "_events/current.md";
 var encryptionPassword = args["password"];
 var eventCreateBool = eventGen.eventCreate(args["event-create"]);
 var eventDataJson = JSON.parse(fs.readFileSync("_events/eventData.json"));
-
-var encryptedEventBody = e8n.exportedBody.body
+var encryptedEventBody = e8n.exportedBody.body;
 
 /*
   START FIREWALL TASKS
