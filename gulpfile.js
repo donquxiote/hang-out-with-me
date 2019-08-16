@@ -2,13 +2,10 @@
 
 const gulp = require('gulp');
 const gulpReplace = require('gulp-replace');
-const cryptojs = require('crypto-js');
-const marked = require('marked');
 const fs = require('fs');
-const through = require('through2');
 const args = require('yargs').argv;
-const PluginError = require('plugin-error');
-const eventGen = require('./gulp_scripts/eventGenerator')
+const eventGen = require('./gulp_scripts/eventGenerator');
+const e8n = require('./gulp_scripts/encrypt');
 
 // Script configs for encrypted data
 var unencryptedSrc = "_events/current.md";
@@ -16,79 +13,16 @@ var encryptionPassword = args["password"];
 var eventCreateBool = eventGen.eventCreate(args["event-create"]);
 var eventDataJson = JSON.parse(fs.readFileSync("_events/eventData.json"));
 
-var encryptedEventBody;
+var encryptedEventBody = e8n.exportedBody.body
 
 /*
   START FIREWALL TASKS
 */
-function checkEncryptedLayout(frontMatter, filepath) {
-  var lines = frontMatter.split('\n'),
-    linesWithoutLayout = [],
-    hasEncryptedLayout = false;
 
-  lines.forEach(function (line) {
-    var layoutTag = 'layout:',
-      isLayoutIndex = line.indexOf(layoutTag),
-      isLayout = isLayoutIndex >= 0,
-      isEncryptedLayout = line.indexOf('encrypted') >= (isLayoutIndex + layoutTag.length);
-
-    if (isLayout) {
-      // in case of multiple instances of layout
-      hasEncryptedLayout = isEncryptedLayout ? true : false;
-    }
-  });
-
-  if (!hasEncryptedLayout) {
-    console.log('[WARNING] ' + filepath + ': protected file not using encrypted layout.');
-  }
-}
-
-function encrypt(password) {
-  return through.obj(function (file, encoding, callback) {
-    if (file.isNull() || file.isDirectory()) {
-      this.push(file);
-      return callback();
-    }
-
-    // No support for streams
-    if (file.isStream()) {
-      this.emit('error', new PluginError({
-        plugin: 'Encrypt',
-        message: 'Streams are not supported.'
-      }));
-      return callback();
-    }
-
-    if (file.isBuffer()) {
-      var delimiter = '---',
-        chunks = String(file.contents).split(delimiter),
-        originalBody = chunks[0],
-        frontMatter = '';
-
-      if (chunks.length === 3) {
-        checkEncryptedLayout(chunks[1], file.path);
-        frontMatter = chunks[1];
-        originalBody = chunks[2];
-      } else if (chunks.length > 1) {
-        this.emit('error', new PluginError({
-          plugin: 'Encrypt',
-          message: file.path + ': protected file has invalid front matter.'
-        }));
-        return callback();
-      }
-
-      var encryptedBody = cryptojs.AES.encrypt(marked(originalBody), password),
-          hmac = cryptojs.HmacSHA256(encryptedBody.toString(), cryptojs.SHA256(password).toString()).toString();
-
-      encryptedEventBody = hmac + encryptedBody;
-      return callback();
-    }
-  });
-}
 
 gulp.task('firewall:encrypt', () => {
   return gulp.src(unencryptedSrc)
-    .pipe(encrypt(encryptionPassword))
+    .pipe(e8n.encrypt(encryptionPassword))
     .pipe(gulp.dest('_posts'));
 });
 
@@ -107,7 +41,7 @@ gulp.task('firewall:replace-text', () => {
 */
 
 gulp.task('eventFileCreate:display', () => {
-  if (eventCreateBool){
+  if (eventCreateBool) {
     return gulp.src('_events/current.md')
       .pipe(gulpReplace(/(class=\"body__add-cal-event\".*\>)/g, "class=\"body__add-cal-event\">"));
   } else {
