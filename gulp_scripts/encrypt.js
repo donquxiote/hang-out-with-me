@@ -7,7 +7,6 @@ const through = require('through2');
 
 
 function exportedBody() { };
-exportedBody.body;
 
 module.exports = {
   exportedBody: exportedBody,
