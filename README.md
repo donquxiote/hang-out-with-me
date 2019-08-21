@@ -42,7 +42,7 @@ This will download your copy of the repo, then install the required gems, and th
 
 ## Configuration
 
-Edit the information which will be encrypted in `current.md`. Site configuration information goes into `_config.yml` like any other Jekyll site.
+Edit the information which will be encrypted in `_events/current.md`. Site configuration information goes into `_config.yml` like any other Jekyll site.
 
 ## Encrypting an event
 
@@ -51,8 +51,10 @@ Run these commands to encrypt your event with a password:
 ```bash
 cd hang-out-with-me/
 
-npx gulp --password "super-secure-password" --event-create t
+npx gulp --password "super-secure-password"
 ```
+
+Optionally you can also generate a link to Google Calendar and a file for Apple Calendar. This allows your guests to easily add the event to their calendar. To enable this add your event information to `_events/eventData.json`, and when running the gulp task use the flag `--event-create t`. You can disable the event file and link section by using the flag `--event-create t`.
 
 Then commit your change and push.
 
@@ -95,6 +97,6 @@ This project is far from complete, here are the current enhancement issues to be
 
 If you have a suggestion open an issue or a pull request.
 
-## Thanks To
+## Thanks
 
-Using javascript encryption in a Jekyll blog was originally pulled from [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) The inspiration for a single page/simple jekyll site came from [Excentris' Compass theme](https://github.com/excentris/compass). Thanks to both of them for making those projects so that I could mash them together.
+This project started as an adaptation of [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) The inspiration for a single page/simple jekyll site came from [Excentris' Compass theme](https://github.com/excentris/compass). Thanks to both of them for making those projects so that I could mash them together.
