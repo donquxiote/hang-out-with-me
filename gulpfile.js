@@ -6,32 +6,13 @@ const fs = require('fs')
 const args = require('yargs').argv
 const eventGen = require('./gulp_scripts/eventGenerator')
 const e8n = require('./gulp_scripts/encrypt')
+const del = require('del')
 
 // Script configs for encrypted data
 var unencryptedSrc = '_events/current.md'
 var encryptionPassword = args['password']
 var eventCreateBool = eventGen.eventCreate(args['event-create'])
 var eventDataJson = JSON.parse(fs.readFileSync('_events/eventData.json'))
-
-/*
-  START FIREWALL TASKS
-*/
-
-gulp.task('firewall:encrypt', () => {
-  return gulp.src(unencryptedSrc)
-    .pipe(e8n.encrypt(encryptionPassword))
-    .pipe(gulp.dest('_posts'))
-})
-
-gulp.task('firewall:replace-text', () => {
-  return gulp.src('_config.yml')
-    .pipe(gulpReplace(/(encrypted_event: .*)/g, 'encrypted_event: ' + '"' + e8n.exportedBody.body + '"'))
-    .pipe(gulp.dest('./'))
-})
-
-/*
-  END FIREWALL TASKS
-*/
 
 /*
   START CALENDAR LINK TASKS
@@ -63,6 +44,11 @@ gulp.task('eventFileCreate:google', () => {
   };
 })
 
+// add gulp task to delete all items in event_files dir each time first.
+gulp.task('eventFileCreate:cleanEventFiles', function () {
+  return del(['event_files/**', '!event_files'])
+})
+
 gulp.task('eventFileCreate:apple', () => {
   if (eventCreateBool) {
     return gulp.src('_events/current.md')
@@ -83,7 +69,33 @@ gulp.task('eventFileCreate:apple', () => {
   END CALENDAR LINK TASKS
 */
 
-gulp.task('eventFileCreate', gulp.series('eventFileCreate:display', 'eventFileCreate:google', 'eventFileCreate:apple'))
+/*
+  START FIREWALL TASKS
+*/
+
+gulp.task('firewall:encrypt', () => {
+  return gulp.src(unencryptedSrc)
+    .pipe(e8n.encrypt(encryptionPassword))
+    .pipe(gulp.dest('_posts'))
+})
+
+gulp.task('firewall:replace-text', () => {
+  return gulp.src('_config.yml')
+    .pipe(gulpReplace(/(encrypted_event: .*)/g, 'encrypted_event: ' + '"' + e8n.exportedBody.body + '"'))
+    .pipe(gulp.dest('./'))
+})
+
+/*
+  END FIREWALL TASKS
+*/
+
+gulp.task('eventFileCreate',
+  gulp.series('eventFileCreate:display',
+    'eventFileCreate:google',
+    'eventFileCreate:cleanEventFiles',
+    'eventFileCreate:apple'
+  )
+)
 
 gulp.task('firewall', gulp.series('firewall:encrypt', 'firewall:replace-text'))
 
