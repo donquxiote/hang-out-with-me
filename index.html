@@ -1,30 +1,18 @@
 ---
 layout: base
 ---
-<div class="wrapper">
-  <header>
-    <div class="logo-container">
-      <a class="logo" href="{{ page.baseurl }}" style="background-image: url('{{ site.baseurl }}{{ site.logo }}')"></a>
-    </div>
+<header class="header">
+  <div class="header__title">
+    <h1>{{ site.title }}</h1>
+  </div>
 
-    <div class="title-container">
-      <h1>{{ site.title }}</h1>
-    </div>
+  <div class="header__about">
+    <p>Enter the password bellow to access the event info. If you don't know it, ask {{ site.event.host }}.</p>
+  </div>
 
-    {% if site.tagline %}
-    <div class="tagline-container">
-      <p>{{ site.tagline }}</p>
-    </div>
-    {% endif %}
-
-    <div class="about-container">
-      <p>Enter the password to the right (or below if on mobile) to get the event info. If you don't know it, ask {{ site.event.host }}.</p>
-    </div>
-
-  </header>
-  <main>
-    <div class="content">
-      {% include encrypted.html %}
-    </div>
-  </main>
-</div>
+</header>
+<main>
+  <div class="body">
+    {% include encrypted.html %}
+  </div>
+</main>

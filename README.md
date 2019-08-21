@@ -2,27 +2,6 @@
 
 A single use website for private event information run on [Jekyll](https://jekyllrb.com/) and designed to be hosted on Github Pages.
 
-## Why
-
-When I deleted my facebook account, one of the issues I knew I'd have would be getting event or party info out en masse to my friends. Evites can be cumbersome and often require knowing people's email, or them checking their email and fighting with spam folders. Group texts are clumsily, everyone is on a dozen different messaging apps and no one seems to be on the same ones, the best option seemed to be an easily reachable website.
-
-My goal was something that was minimal work on my the attendee side, that could be shared with a link and a quick blurb.
-
-This template provides these key elements:
-
-- Simple, mobile responsive single page layout
-- Encrypted content hidden behind a password of your choice
-- Single editable content page
-- Designed to be hosted on github pages, the only cost you should incur is a domain name if you want one.
-
-## How It Works
-
-Your event information is put into the `current.md` file. The gulp tasks will only read that file, encrypt its contents, and then put the encrypted hash into your configuration file. (This allows you to save past events in the `_events` directory.) You then push your change to github pages, and your event is now hosted behind a password.
-
-### Security caveats
-
-This is not foolproof information protection and should not be used for anything truly sensitive. This is only to prevent the most opportunistic from retrieving your event information.
-
 ## Installation
 
 ### Prerequisites
@@ -32,7 +11,7 @@ This is not foolproof information protection and should not be used for anything
     Then install bundler:
 
     ```bash
-    $ gem install bundler
+    gem install bundler
     ```
 
 2. Have NPM and Node Installed. Instructions can be found [here.](https://www.npmjs.com/get-npm)
@@ -50,30 +29,32 @@ If you are using a public repo, simply fork this repo to your account.
 Once you have the repo, run these commands:
 
 ```bash
-$ git pull https://github.com/YOUR-USERNAME/hang-out-with-me.git
+git pull https://github.com/YOUR-USERNAME/hang-out-with-me.git
 
-$ cd hang-out-with-me/
+cd hang-out-with-me/
 
-$ bundle install
+bundle install
 
-$ npm install
+npm install
 ```
 
 This will download your copy of the repo, then install the required gems, and then the required packages.
 
 ## Configuration
 
-Edit the information which will be encrypted in `current.md`. Site configuration information goes into `_config.yml` like any other Jekyll site.
+Edit the information which will be encrypted in `_events/current.md`. Site configuration information goes into `_config.yml` like any other Jekyll site.
 
 ## Encrypting an event
 
-Edit the `encryptionPassword` variable in `gulpfle.js` to set the password your want your attendees to use. Then run these commands:
+Run these commands to encrypt your event with a password:
 
 ```bash
-$ cd hang-out-with-me/
+cd hang-out-with-me/
 
-$ gulp
+npx gulp --password "super-secure-password"
 ```
+
+Optionally you can also generate a link to Google Calendar and a file for Apple Calendar. This allows your guests to easily add the event to their calendar. To enable this add your event information to `_events/eventData.json`, and when running the gulp task use the flag `--event-create t`. You can disable the event file and link section by using the flag `--event-create t`.
 
 Then commit your change and push.
 
@@ -81,16 +62,41 @@ Then commit your change and push.
 
 Once you've committed your encrypted event and pushed it, you can publish the site. Github's own documentation on this is pretty straight forward and [available here.](https://help.github.com/categories/github-pages-basics/)
 
+---
+
+## Why
+
+When I deleted my facebook account, one of the issues I knew I'd have would be getting event or party info out en masse to my friends. Evites can be cumbersome and often require knowing people's email, or them checking their email and fighting with spam folders. Group texts are clumsily, everyone is on a dozen different messaging apps but no one has the same combination. The most accessible and easy to use (for the invitees) option seemed to be an easily simple website.
+
+My goal was something that was minimal work on my the attendee side, that could be shared with a link and a quick blurb.
+
+This template provides these key elements:
+
+- Simple, mobile responsive single page layout
+- Encrypted content hidden behind a password of your choice
+- Single editable content page
+- Designed to be hosted on github pages, the only cost you should incur is a domain name if you want one.
+
+## How It Works
+
+Your event information is put into the `current.md` file. The gulp tasks will only read that file, encrypt its contents, and then put the encrypted hash into your configuration file. (This allows you to save past events in the `_events` directory.) You then push your change to github pages, and your event is now hosted behind a password.
+
+## Generating Calendar Events
+
+This theme now has the ability to generate a link for Google Calendar, and a file for Apple calendar, so your event can easily be added to an attendees calendar app of choice. To do this, populate the `eventData.json` file, and pass the flag `--event-create t` when running the gulp command. If you pass that flag with the argument `f`, the event file/link section will be hidden in the final page.
+
+### Security caveats
+
+This is not foolproof information protection and should not be used for anything truly sensitive. This is only to prevent the most opportunistic from retrieving your event information. If you choose to create the calendar files, those are stored in a folder whose path is a random, 28 characters in length, cryptographically strong string.
+
 ## TO DO
 
 This project is far from complete, here are the current enhancement issues to be looked at:
 
-- [CSS improvements](https://github.com/donquxiote/hang-out-with-me/issues/1)
-- [Liquid templating on encrypted page](https://github.com/donquxiote/hang-out-with-me/issues/2)
 - [Theme Gemmification](https://github.com/donquxiote/hang-out-with-me/issues/3)
 
 If you have a suggestion open an issue or a pull request.
 
-## Thanks To
+## Thanks
 
-The basic page format and css was shamelessly cribbed from [Excentris' Compass theme](https://github.com/excentris/compass) and the encryption was pulled from [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) Thanks to both of them for making those projects so that I could mash them together.
+This project started as an adaptation of [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) The inspiration for a single page/simple jekyll site came from [Excentris' Compass theme](https://github.com/excentris/compass). Thanks to both of them for making those projects so that I could mash them together.
