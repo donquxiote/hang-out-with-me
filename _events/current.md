@@ -31,16 +31,16 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
     <a class="google-cal-link" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">
       <img
         class="google-icon body__calendar-icon"
-        src="/hang-out-with-me/images/sms-100.png"
+        src="/hang-out-with-me/images/google-100.png"
         alt="Add to Google Calendar">
     </a>
   </div>
 
   <div class="body__add-cal-event apple-calendar">
-    <a class="apple-cal-link" href="/hang-out-with-me/event_files/-vePfYYt2QAcPbIwNn0jUvpNEx.2/event.ics">
+    <a class="apple-cal-link" href="/hang-out-with-me/event_files/9-HLiqfuf7XkE4GIo8vffWs6eHvw/event.ics">
       <img
         class="apple-icon body__calendar-icon"
-        src="/hang-out-with-me/images/sms-100.png"
+        src="/hang-out-with-me/images/apple-100.png"
         alt="Add to Apple Calendar">
     </a>
   </div>
