@@ -31,16 +31,16 @@ Ah, how shall I do it? Oh, I know. I’ll turn him into a flea, a harmless, litt
     <a class="google-cal-link" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">
       <img
         class="google-icon body__calendar-icon"
-        src="/hang-out-with-me/assets/images/google-100.png"
+        src="assets/images/google-100.png"
         alt="Add to Google Calendar">
     </a>
   </div>
 
   <div class="body__add-cal-event apple-calendar">
-    <a class="apple-cal-link" href="/hang-out-with-me/event_files/gx~0vd2psrkNsFY6G.qEOF-~IIQ5/event.ics">
+    <a class="apple-cal-link" href="/hang-out-with-me/event_files/mijF2~xec9.qGcNPpFHuPXjwYIPF/event.ics">
       <img
         class="apple-icon body__calendar-icon"
-        src="/hang-out-with-me/assets/images/apple-100.png"
+        src="assets/images/apple-100.png"
         alt="Add to Apple Calendar">
     </a>
   </div>
@@ -55,7 +55,7 @@ If you've got a question, let me know!
     <a href="sms:5551234567">
       <img
         class="sms-logo body__contact-icon body__contact-logo"
-        src="/hang-out-with-me/assets/images/sms-100.png"
+        src="assets/images/sms-100.png"
         alt="Text Me">
       </a>
   </div>
@@ -63,7 +63,7 @@ If you've got a question, let me know!
     <a href="tel:5551234567">
       <img
         class="phone-logo body__contact-icon body__contact-logo"
-        src="/hang-out-with-me/assets/images/phone-100.png"
+        src="assets/images/phone-100.png"
         alt="Call Me">
     </a>
   </div>
@@ -71,7 +71,7 @@ If you've got a question, let me know!
     <a href="mailto:email@fake_email.blargh?subject=Question About the Event">
       <img
         class="email-logo body__contact-icon body__contact-logo"
-        src="/hang-out-with-me/assets/images/email-100.png"
+        src="assets/images/email-100.png"
         alt="Email Me">
     </a>
   </div>
