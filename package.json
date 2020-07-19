@@ -5,6 +5,7 @@
     "fs": "0.0.1-security",
     "gulp": "^4.0.0",
     "gulp-replace": "^1.0.0",
+    "kind-of": ">=6.0.3",
     "ics": "^2.15.1",
     "crypto-random-string": "^3.0.1",
     "marked": "^0.7.0",
