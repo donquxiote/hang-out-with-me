@@ -8,7 +8,7 @@
     "kind-of": ">=6.0.3",
     "ics": "^2.15.1",
     "crypto-random-string": "^3.0.1",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "plugin-error": "^1.0.1",
     "path": "^0.12.7",
     "through2": "^3.0.0",
