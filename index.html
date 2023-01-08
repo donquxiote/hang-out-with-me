@@ -1,18 +1,9 @@
 ---
-layout: base
 ---
-<header class="header">
-  <div class="header__title">
-    <h1>{{ site.title }}</h1>
-  </div>
 
-  <div class="header__about">
-    <p>Enter the password bellow to access the event info. If you don't know it, ask {{ site.event.host }}.</p>
-  </div>
+Welcome to My Home Page
 
-</header>
-<main>
-  <div class="body">
-    {% include encrypted.html %}
-  </div>
-</main>
+{% assign date = '2020-04-13T10:20:00Z' %}
+
+- Original date - {{ date }}
+- With timeago filter - {{ date | timeago }}
