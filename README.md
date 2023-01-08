@@ -6,17 +6,22 @@ A single use website for private event information run on [Jekyll](https://jekyl
 
 ### Prerequisites
 
-1. Have Ruby and Bundler Installed. To install ruby follow the instructions [here.](https://www.ruby-lang.org/en/documentation/installation/)
-
-    Then install bundler:
-
-    ```bash
-    gem install bundler
-    ```
-
-2. Have NPM and Node Installed. Instructions can be found [here.](https://www.npmjs.com/get-npm)
+[Install asdf](https://asdf-vm.com/guide/getting-started.html)
 
 ### Installing the theme
+
+```bash
+# 1. Fork this repo or duplicate it to your own private version
+# 2. Clone from github
+# 3. cd into the project directory
+# 4. Install dependencies
+
+asdf install
+
+bundle install
+
+npm install
+```
 
 There are two ways you can host this site in github, as a private or a public repo. I recommend hosting in a private repo, so you can commit and backup your `_events` folder.
 
@@ -26,33 +31,17 @@ To copy to a private repo, you will need to duplicate this repo. [Github has pre
 
 If you are using a public repo, simply fork this repo to your account.
 
-Once you have the repo, run these commands:
+## Configure your Site and Populate your Event
 
-```bash
-git pull https://github.com/YOUR-USERNAME/hang-out-with-me.git
+Save event info. `_events/current.md`.
+Site configuration information goes into `_config.yml` like any other Jekyll site.
 
-cd hang-out-with-me/
+`bundle exec jekyll serve`
 
-bundle install
+## Encrypt your event
 
-npm install
-```
-
-This will download your copy of the repo, then install the required gems, and then the required packages.
-
-## Configuration
-
-Edit the information which will be encrypted in `_events/current.md`. Site configuration information goes into `_config.yml` like any other Jekyll site.
-
-## Encrypting an event
-
-Run these commands to encrypt your event with a password:
-
-```bash
-cd hang-out-with-me/
-
-npx gulp --password "super-secure-password"
-```
+Workflow to generate event.
+Options to create calendar event file
 
 Optionally you can also generate a link to Google Calendar and a file for Apple Calendar. This allows your guests to easily add the event to their calendar. To enable this add your event information to `_events/eventData.json`, and when running the gulp task use the flag `--event-create t`. You can disable the event file and link section by using the flag `--event-create t`.
 
@@ -60,7 +49,7 @@ Then commit your change and push.
 
 ## Publish to Github Pages
 
-Once you've committed your encrypted event and pushed it, you can publish the site. Github's own documentation on this is pretty straight forward and [available here.](https://help.github.com/categories/github-pages-basics/)
+The [included Github action](https://github.com/jeffreytse/jekyll-deploy-action) will publish the site to the `gh-pages` branch when you push to your `main` branch. You will need to create an empty `gh-pages` branch if you don't have one.
 
 ---
 
@@ -79,24 +68,12 @@ This template provides these key elements:
 
 ## How It Works
 
-Your event information is put into the `current.md` file. The gulp tasks will only read that file, encrypt its contents, and then put the encrypted hash into your configuration file. (This allows you to save past events in the `_events` directory.) You then push your change to github pages, and your event is now hosted behind a password.
-
-## Generating Calendar Events
-
-This theme now has the ability to generate a link for Google Calendar, and a file for Apple calendar, so your event can easily be added to an attendees calendar app of choice. To do this, populate the `eventData.json` file, and pass the flag `--event-create t` when running the gulp command. If you pass that flag with the argument `f`, the event file/link section will be hidden in the final page.
-
 ### Security caveats
 
 This is not foolproof information protection and should not be used for anything truly sensitive. This is only to prevent the most opportunistic from retrieving your event information. If you choose to create the calendar files, those are stored in a folder whose path is a random, 28 characters in length, cryptographically strong string.
-
-## TO DO
-
-This project is far from complete, here are the current enhancement issues to be looked at:
-
-- [Theme Gemmification](https://github.com/donquxiote/hang-out-with-me/issues/3)
 
 If you have a suggestion open an issue or a pull request.
 
 ## Thanks
 
-This project started as an adaptation of [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) The inspiration for a single page/simple jekyll site came from [Excentris' Compass theme](https://github.com/excentris/compass). Thanks to both of them for making those projects so that I could mash them together.
+Refactored to update Jekyll and use [PageCrypt](https://github.com/Greenheart/pagecrypt) and Github actions. Originally this project started as an adaptation of [Lllychen's jekyll-firewall theme.](https://github.com/lllychen/jekyll-firewall) The inspiration for a single page/simple jekyll site came from [Excentris' Compass theme](https://github.com/excentris/compass). Thanks to both of them for making those projects so that I could mash them together.
