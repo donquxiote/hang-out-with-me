@@ -1,29 +1,37 @@
-# # general configuration
-# url:
-# baseurl: '/hang-out-with-me'
+# Hang Out With Me Config
+howm:
+  title:
+    text: title
+    blurb: title blurb
+  details: details text
+  host: host name
+  location:
+    street: loc street
+    city: city
+    state: state
+    zip_code: 12345
+  time:
+    blurb: time text
+    start_time: timestamp
+    end_time: timestamp
+  contact:
+    phone: 1234567890
+    sms: 1234567890
+    email:
+      from: email@email.com
+      subject: subject
 
-# title: "Windmill Tilting"
-
-# event:
-#   host: "Don Quixote De La Mancha"
-
-# encrypted_event: "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"
-
-# exclude:
-#   - _events
-#   - gulp_scripts
-#   - node_modules
-#   - .gitignore
-#   - .vscode
-#   - gulpfile.js
-#   - README.md
-#   - Gemfile
-#   - Gemfile.lock
-#   - package.json
-#   - package-lock.json
-#   - .tool-versions
-
-
-# _config.yml
-
-title: "Jekyll Actions Demo"
+# Jekyll Config
+exclude:
+  - _events
+  - node_modules
+  - .gitignore
+  - .vscode
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - .tool-versions
+  - Rakefile
