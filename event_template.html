@@ -8,28 +8,28 @@
 <body>
   <main>
     <div class="body">
-      <h1>Title</h1>
-      <p></p>
+      <h1><!-- title --></h1>
+      <p><!-- title_description --></p>
 
       <h2>Details</h2>
-      <p></p>
+      <p><!-- details_description --></p>
 
       <h3>Location</h3>
       <div class="body__address">
         <a class="body__address-map-url" href="">
-          <p class="body__address-street">123 Windmills Street</p>
-          <p class="body__address-city">AnyTown, TX 55512</p>
+          <p class="body__address-street"><!-- address_street --></p>
+          <p class="body__address-city"><!-- address_city-state-zip --></p>
         </a>
       </div>
 
       <h3>Time</h3>
-      <p class="body__time-blurb">9am until we're done! Tuesday, December 21st, 2023</p>
+      <p class="body__time-blurb"><!-- time_description --></p>
 
       <h2 class="h2__add-cal-event">Add to Calendar</h2>
       <div class="body__add-cal-event">
         <div class="body__add-cal-event google-calendar">
           <a class="google-cal-link"
-            href="https://www.google.com/calendar/render?action=TEMPLATE&text=Event%20Title&details=A%20great%20description%20for%20a%20great%20event&location=123%20Street,%20City%20NY%2091727&dates=20190927T130000/20190928T130000">
+            href="<!-- google_event_url -->">
             <img class="google-icon body__calendar-icon" src="assets/images/google-100.png"
               alt="Add to Google Calendar">
           </a>
@@ -37,7 +37,7 @@
 
         <div class="body__add-cal-event apple-calendar">
           <a class="apple-cal-link"
-            href="/hang-out-with-me/event_files/mijF2~xec9.qGcNPpFHuPXjwYIPF/event.ics">
+            href="/hang-out-with-me/event_files/<!-- event_file_path -->">
             <img class="apple-icon body__calendar-icon" src="assets/images/apple-100.png"
               alt="Add to Apple Calendar">
           </a>
@@ -45,23 +45,23 @@
       </div>
 
       <h2>Contact</h2>
-      <p></p>
+      <p><!-- contact_description --></p>
 
       <div class="body__contact">
         <div class="body__contact-sms body__contact-icon">
-          <a href="sms:5551234567">
+          <a href="sms:<!-- sms -->">
             <img class="sms-logo body__contact-icon body__contact-logo"
               src="assets/images/sms-100.png" alt="Text Me">
           </a>
         </div>
         <div class="body__contact-phone body__contact-icon">
-          <a href="tel:5551234567">
+          <a href="tel:<!-- phone -->">
             <img class="phone-logo body__contact-icon body__contact-logo"
               src="assets/images/phone-100.png" alt="Call Me">
           </a>
         </div>
         <div class="body__contact-email body__contact-icon">
-          <a href="mailto:email@fake_email.blargh?subject=Question About the Event">
+          <a href="mailto:<!-- email_address -->?subject=<!-- email_subject -->">
             <img class="email-logo body__contact-icon body__contact-logo"
               src="assets/images/email-100.png" alt="Email Me">
           </a>

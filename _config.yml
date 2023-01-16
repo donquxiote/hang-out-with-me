@@ -2,8 +2,8 @@
 howm:
   title:
     text: title
-    blurb: title blurb
-  details: details text
+    description: title description
+  details_description: details text
   host: host name
   location:
     street: loc street
@@ -11,10 +11,24 @@ howm:
     state: state
     zip_code: 12345
   time:
-    blurb: time text
-    start_time: timestamp
-    end_time: timestamp
+    description: time text
+    all_day_bool: false
+    start:
+      year:
+      month:
+      day:
+      hour:
+      minute:
+      # does not currently support timezones
+    end:
+      year:
+      month:
+      day:
+      hour:
+      minute:
+      # does not currently support timezones
   contact:
+    description:
     phone: 1234567890
     sms: 1234567890
     email:
