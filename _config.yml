@@ -1,7 +1,7 @@
 # Hang Out With Me Config
 howm:
   title:
-    text: title
+    text: event title
     description: title description
   details_description: details text
   host: host name
@@ -14,21 +14,21 @@ howm:
     description: time text
     all_day_bool: false
     start:
-      year:
-      month:
-      day:
-      hour:
-      minute:
+      year: 2023
+      month: 02
+      day: 02
+      hour: 13
+      minute: 30
       # does not currently support timezones
     end:
-      year:
-      month:
-      day:
-      hour:
-      minute:
+      year: 2023
+      month: 02
+      day: 02
+      hour: 19
+      minute: 30
       # does not currently support timezones
   contact:
-    description:
+    description: "talk to me"
     phone: 1234567890
     sms: 1234567890
     email:
