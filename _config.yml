@@ -1,39 +1,40 @@
 # Hang Out With Me Config
 howm:
   title:
-    text: event title
-    description: title description
-  details_description: details text
-  host: host name
+    text: Harriet's 16th Birthday Party Extravaganza
+    description: Driver's license time!!!
+  details_description: Come by to the house for BBQ and cake to celebrate our favorite daughter's 16th birthday!
+  host: John Smith
   location:
-    street: loc street
-    city: city
-    state: state
-    zip_code: 12345
+    street: 4216 Doorman Lane
+    city: Jonesburrough
+    state: Ohigho
+    zip_code: 42069
+    map_url: https://goo.gl/maps/877HcdHtookUHhjPA
   time:
-    description: time text
+    description: Going from 1pm until the sun goes down!
     all_day_bool: false
     start:
-      year: 2023
-      month: 02
-      day: 02
-      hour: 13
-      minute: 30
+      year: 2038
+      month: 01
+      day: 19
+      hour: 15
+      minute: 14
       # does not currently support timezones
     end:
-      year: 2023
-      month: 02
-      day: 02
-      hour: 19
-      minute: 30
+      year: 2038
+      month: 01
+      day: 19
+      hour: 20
+      minute: 00
       # does not currently support timezones
   contact:
     description: "talk to me"
-    phone: 1234567890
-    sms: 1234567890
+    phone: 1235557890
+    sms: 1235557890
     email:
       from: email@email.com
-      subject: subject
+      subject: Birthday Party
 
 # Jekyll Config
 exclude:

@@ -1,6 +1,6 @@
 # Hang Out With Me
 
-A single use website for private event information run on [Jekyll](https://jekyllrb.com/) and designed to be hosted on Github Pages.
+A single use website for private event information run on [Jekyll](https://jekyllrb.com/) and designed to be hosted on Github Pages. Example site is available at [https://donquxiote.github.io/hang-out-with-me/](https://donquxiote.github.io/hang-out-with-me/) with the password `my_password`
 
 ## Installation
 
@@ -42,13 +42,11 @@ Site configuration information goes into `_config.yml` like any other Jekyll sit
 
 ## 2. Populate event html
 
-`be rake populate_event` reads config and populates html with that information
+`ruby tasks/format_event.rb` reads config and populates html with that information
 
 ## 3. Encrypt your event
 
-`be rake encrypt_event <password>`
-
-
+`ruby tasks/encrypt_event.rb my_password` encrypts the event with your password and saves the encrypted html into `index.html`
 
 Then commit your change and push.
 

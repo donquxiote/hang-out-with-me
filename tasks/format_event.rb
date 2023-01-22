@@ -23,6 +23,7 @@ event_text.gsub!("<!-- details_description -->", config["howm"]["details_descrip
 event_text.gsub!("<!-- address_street -->", config["howm"]["location"]["street"])
 location_city_string = "#{config["howm"]["location"]["city"]}, #{config["howm"]["location"]["state"]} #{config["howm"]["location"]["zip_code"]}"
 event_text.gsub!("<!-- address_city-state-zip -->", location_city_string)
+event_text.gsub!("<!-- map_url -->", config["howm"]["location"]["map_url"])
 
 # Set event time values
 event_text.gsub!("<!-- time_description -->", config["howm"]["time"]["description"])
@@ -68,6 +69,9 @@ google_event_url = "https://www.google.com/calendar/render?action=TEMPLATE" +
 
 event_text.gsub!("<!-- google_event_url -->", google_event_url)
 
+# delete files in event_files
+system("rm -rf event_files/*")
+
 # create ical file
 ical = Icalendar::Calendar.new
 event = Icalendar::Event.new
@@ -78,9 +82,6 @@ event.location = location_string
 event.summary = config["howm"]["title"]["text"]
 event.description = config["howm"]["details_description"]
 ical.add_event(event)
-
-# delete files in event_files
-
 cryptographic_path = SecureRandom.urlsafe_base64(28)
 event_file_path = "event_files/#{cryptographic_path}/event.ics"
 FileUtils.makedirs("event_files/" + cryptographic_path)
@@ -92,6 +93,6 @@ event_text.gsub!("<!-- contact_description -->", config["howm"]["contact"]["desc
 event_text.gsub!("<!-- sms -->", config["howm"]["contact"]["sms"].to_s)
 event_text.gsub!("<!-- phone -->", config["howm"]["contact"]["phone"].to_s)
 event_text.gsub!("<!-- email_address -->", config["howm"]["contact"]["email"]["from"])
-event_text.gsub!("<!-- email_subject -->", config["howm"]["contact"]["email"]["subject"])
+event_text.gsub!("<!-- email_subject -->", parser.escape(config["howm"]["contact"]["email"]["subject"]))
 
 File.write("current_event.html", event_text)
