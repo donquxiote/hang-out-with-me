@@ -37,6 +37,13 @@ howm:
       subject: Birthday Party
 
 # Jekyll Config
+
+plugins:
+  - jekyll-postcss
+
+postcss:
+  cache: false
+
 exclude:
   - _events
   - node_modules
