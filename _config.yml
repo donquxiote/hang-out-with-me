@@ -59,3 +59,6 @@ exclude:
   - tasks
   - .github
   - current_event.html
+  - tailwind.config.js
+  - postcss.config.js
+  - templates
