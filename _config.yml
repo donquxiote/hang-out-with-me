@@ -57,3 +57,8 @@ exclude:
   - package-lock.json
   - .tool-versions
   - Rakefile
+  - tasks
+  - postcss.config.js
+  - tailwind.config.js
+  - .github
+  - templates
