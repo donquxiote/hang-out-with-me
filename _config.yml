@@ -61,4 +61,4 @@ exclude:
   - postcss.config.js
   - tailwind.config.js
   - .github
-  - templates
+  - current_event.html

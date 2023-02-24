@@ -1,9 +1,9 @@
 module.exports = {
+  content: ['./templates/event_template.html'],
   purge: [
     './_includes/**/*.html',
     './_layouts/**/*.html',
     './_posts/*.md',
-    './tenplates/**/*.html',
     './*.html',
   ],
   theme: {
