@@ -6,7 +6,6 @@ module.exports = {
     './tenplates/**/*.html',
     './*.html',
   ],
-  darkMode: false,
   theme: {
     colors: {
       'background': '#1E1E3F',
