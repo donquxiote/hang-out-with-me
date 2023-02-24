@@ -40,9 +40,13 @@ Site configuration information goes into `_config.yml` like any other Jekyll sit
 
 `bundle exec jekyll serve` to run site
 
+### Changing CSS
+
+If you decide to change the theme, you must make sure all of your tailwind classes are included in the `event_template.html` file. If they're not, then tailwind won't know you've used them and not generate the css you need.
+
 ## 2. Populate event html
 
-`ruby tasks/format_event.rb` reads config and populates html with that information
+`ruby tasks/format_event.rb` reads config and populates html with that information, copying the structure from `templates/event_template.html`
 
 ## 3. Encrypt your event
 

@@ -96,6 +96,3 @@ event_text.gsub!("<!-- email_address -->", config["howm"]["contact"]["email"]["f
 event_text.gsub!("<!-- email_subject -->", parser.escape(config["howm"]["contact"]["email"]["subject"]))
 
 File.write("current_event.html", event_text)
-
-# create css based on tailwind classes actually being used
-# JEKYLL_ENV=production NODE_ENV=production npx postcss assets/css/main.scss --o assets/main.scss
