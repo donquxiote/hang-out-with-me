@@ -1,11 +1,5 @@
 module.exports = {
   content: ['./templates/event_template.html'],
-  purge: [
-    './_includes/**/*.html',
-    './_layouts/**/*.html',
-    './_posts/*.md',
-    './*.html',
-  ],
   theme: {
     colors: {
       'background': '#1E1E3F',

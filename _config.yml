@@ -56,9 +56,6 @@ exclude:
   - package.json
   - package-lock.json
   - .tool-versions
-  - Rakefile
   - tasks
-  - postcss.config.js
-  - tailwind.config.js
   - .github
   - current_event.html
