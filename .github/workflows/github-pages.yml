@@ -21,6 +21,9 @@ jobs:
 
       # Use GitHub Deploy Action to build and deploy to Github
       - uses: jeffreytse/jekyll-deploy-action@v0.4.0
+        env:
+          JEKYLL_ENV: production
+          NODE_ENV: production
         with:
           provider: 'github'
           token: ${{ secrets.GITHUB_TOKEN }} # It's your Personal Access Token(PAT)

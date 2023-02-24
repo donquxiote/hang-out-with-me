@@ -1,61 +1,39 @@
 ---
 ---
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-$text-color: #cec5ff;
-$anchor-text-color: #FAD000;
-$anchor-text-visited-color: #6943FF;
-$background-color: #2D2B55;
-$button-text-color: #1E1E3F;
-// #2D2B55,#6943FF,#FAD000,#1E1E3F,#6943ff,#cec5ff,#3ad900,#6943ff
+@layer base {
+  h0 {
+    @apply text-3xl font-bold md:text-5xl;
+  }
 
-html {
-  font-family: 'Fira Sans', sans-serif;
-	color: $text-color;
-	background-color: $background-color;
-}
+  h1 {
+    @apply text-2xl font-bold md:text-4xl my-6;
+  }
 
-.body {
-  margin: auto;
-  width: 80%;
-  padding: 10px;
-  text-align: left;
-}
+  h2 {
+    @apply text-xl font-bold md:text-3xl my-5;
+  }
 
-.body__content {
-  text-align: left;
-}
+  h3 {
+    @apply text-lg font-bold md:text-2xl my-4;
+  }
 
-.header {
-  margin: auto;
-  width: 80%;
-  padding: 10px;
-  text-align: left;
-}
+  h4 {
+    @apply text-base font-bold md:text-lg my-3;
+  }
 
-.body__contact, .body__add-cal-event {
-  display: inline-block;
-}
+  p {
+    @apply text-sm md:text-base my-2;
+  }
 
-.body__contact-icon, .body__calendar-icon {
-  vertical-align: middle;
-  max-width: 50%;
-  height: auto;
-  float: left;
-}
+  a:link {
+    @apply text-link
+  }
 
-a:link {
-  color: $anchor-text-color;
-}
-
-a:visited {
-  color: $anchor-text-visited-color;
-}
-
-button {
-  border: 0;
-  outline: 0;
-  background: $anchor-text-color;
-  color: $button-text-color;
-  font-family: 'Fira Sans', sans-serif;
-  font-size: 20px;
+  a:visited {
+    @apply text-link_visited
+  }
 }
