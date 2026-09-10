@@ -1,6 +1,6 @@
 # Hang Out With Me
 
-A single use website for private event information run on [Jekyll](https://jekyllrb.com/) and designed to be hosted on Github Pages. Example site is available at [https://donquxiote.github.io/hang-out-with-me/](https://donquxiote.github.io/hang-out-with-me/) with the password `my_password`
+A single use website for private event information run on [Jekyll](https://jekyllrb.com/) and designed to be hosted on Github Pages. Example site is available at [https://donquxiote.github.io/hang-out-with-me/](https://donquxiote.github.io/hang-out-with-me/) with the password `my_password`.
 
 ## Installation
 
