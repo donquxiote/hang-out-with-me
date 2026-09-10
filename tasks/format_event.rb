@@ -18,7 +18,6 @@ event_text.gsub!('<!-- title -->', config['howm']['title']['text'])
 event_text.gsub!('<!-- title_description -->', config['howm']['title']['description'])
 # Set event details description
 event_text.gsub!('<!-- details_description -->', config['howm']['details_description'])
-event_text.to_utc
 # Set event location values
 event_text.gsub!('<!-- address_street -->', config['howm']['location']['street'])
 location_city_string = "#{config['howm']['location']['city']}, #{config['howm']['location']['state']} #{config['howm']['location']['zip_code']}"
